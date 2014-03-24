@@ -1,5 +1,5 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
 <polymer-element name="x-giphy" attributes="key term src gifId translate random">
   <template>
     <style>
@@ -24,8 +24,13 @@
       var key = 'dc6zaTOxFJmzC';
 
       Polymer('x-giphy', {
-        attached: function() {
-          if (this.term) {
+        gifIdChanged: function(oldVal, newVal) {
+          if (newVal) {
+            return this.gifById();
+          }
+        },
+        termChanged: function(oldVal, newVal) {
+          if (newVal) {
             this.queryTerm = this.encodeTerm(this.term);
 
             if (this.hasAttribute('random')) {
@@ -37,10 +42,6 @@
             }
 
             return this.gifByTerm();
-          }
-
-          if (this.gifId) {
-            return this.gifById();
           }
         },
         responseChanged: function(oldVal, newVal) {
