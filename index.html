@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <script src="bower_components/platform/platform.js"></script>
     <link rel="import" href="x-giphy.html">
+    <link rel="import" href="elements/x-gif.html">
   </head>
   <body>
+    <h1>A bunch o gifs</h1>
     <x-giphy term="funny cat"></x-giphy>
     <br>
     <x-giphy term="american psycho" random></x-giphy>
@@ -13,5 +15,38 @@
     <x-giphy term="superman" translate></x-giphy>
     <br>
     <x-giphy gifId="feqkVgjJpYtjy"></x-giphy>
+    <br>
+
+    <h1>Live search</h1>
+    <polymer-element name="giphy-search" noscript>
+      <template>
+        <input type="text" value="{{search}}">
+        <div>
+          <x-giphy term="{{search}}" random></x-giphy>
+        </div>
+      </template>
+    </polymer-element>
+
+    <giphy-search></giphy-search>
+
+    <!-- <h1>x-gif mashup</h1>
+    <polymer-element name="x-giphy-gif" noscript attributes="term">
+      <template>
+        <style>
+          x-giphy {
+            display: none;
+          }
+        </style>
+        <x-giphy term="{{term}}" src="{{src}}"></x-giphy>
+        <div>
+          <x-gif src="{{src}}" ping-pong></x-gif>
+        </div>
+      </template>
+    </polymer-element>
+
+    <x-giphy-gif term="pizza"></x-giphy-gif>
+    <x-gif src="http://media.giphy.com/media/M5hBbHalNyaHe/giphy.gif"></x-gif>
+    <x-gif src="http://i.imgur.com/iKXH4E2.gif"></x-gif> -->
+
   </body>
 </html>
