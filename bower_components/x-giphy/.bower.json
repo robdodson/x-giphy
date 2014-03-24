@@ -1,0 +1,28 @@
+{
+  "name": "x-giphy",
+  "version": "0.0.1",
+  "authors": [
+    "Rob Dodson <robdodson@google.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-ajax": "Polymer/core-ajax#~0.2.1"
+  },
+  "homepage": "https://github.com/robdodson/x-giphy",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "582cef44c7cd69fd6511cb37e2f846ffd133aec7"
+  },
+  "_source": "git://github.com/robdodson/x-giphy.git",
+  "_target": "*",
+  "_originalSource": "x-giphy"
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>core-ajax</title>
+  <script src="../platform/platform.js"></script>
+  <link rel="import" href="core-ajax.html">
+</head>
+<body>
+  <core-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
+      params='{"alt":"json", "q":"chrome"}'
+      handleAs="json"></core-ajax>
+   
+  <template repeat="{{response.feed.entry}}">
+    <div>{{title.$t}}</div>
+  </template>
+  
+  <script>
+    document.addEventListener('polymer-ready', function() {
+      var ajax = document.querySelector("core-ajax");
+      ajax.addEventListener("core-response", 
+        function(e) {
+          document.querySelector('template').model = {
+            response: e.detail.response
+          };
+        }
+      );
+    });
+  </script>
+</body>
+</html>

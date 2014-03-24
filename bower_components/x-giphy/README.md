@@ -4,6 +4,8 @@ Web Component wrapper for Giphy API
 
 > Maintained by [Rob Dodson](https://github.com/robdodson).
 
+![](https://media0.giphy.com/media/oFP9WKihsBjMs/giphy.gif)
+
 ## Demo
 
 > [Check it live](http://robdodson.github.io/x-giphy).
@@ -38,10 +40,13 @@ Web Component wrapper for Giphy API
 
 Attribute   | Options   | Description
 ---         | ---       | ---
-`term`      | *string*  | | Finds gifs that match this term
-`random`    | *boolean* | | Picks a random gif to display
-`translate` | *boolean* | | Uses Giphy "special sauce" to find matching gif
-`gifId`     | *string*  | | Displays the gif that matches this id
+`key`       | *string*  | Your Giphy API key (defaults to [beta key][])
+`term`      | *string*  | Find gif that matches this term
+`random`    | *boolean* | Picks a random gif to display
+`translate` | *boolean* | Uses Giphy "special sauce" to find matching gif
+`gifId`     | *string*  | Displays the gif that matches this id
+
+> [See demo page for code examples](http://robdodson.github.io/x-giphy).
 
 
 ## Contributing
@@ -55,3 +60,5 @@ Attribute   | Options   | Description
 ## License
 
 [MIT License](http://robdodson.mit-license.org/) © Rob Dodson
+
+[beta key]: https://github.com/giphy/GiphyAPI#access-and-api-keys
