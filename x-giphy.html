@@ -24,8 +24,8 @@
       var key = 'dc6zaTOxFJmzC';
 
       Polymer('x-giphy', {
-        attached: function() {
-          if (this.gifId) {
+        gifIdChanged: function(oldVal, newVal) {
+          if (newVal) {
             return this.gifById();
           }
         },
