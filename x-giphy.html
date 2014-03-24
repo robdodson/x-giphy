@@ -25,7 +25,12 @@
 
       Polymer('x-giphy', {
         attached: function() {
-          if (this.term) {
+          if (this.gifId) {
+            return this.gifById();
+          }
+        },
+        termChanged: function(oldVal, newVal) {
+          if (newVal) {
             this.queryTerm = this.encodeTerm(this.term);
 
             if (this.hasAttribute('random')) {
@@ -37,10 +42,6 @@
             }
 
             return this.gifByTerm();
-          }
-
-          if (this.gifId) {
-            return this.gifById();
           }
         },
         responseChanged: function(oldVal, newVal) {
