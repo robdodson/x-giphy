@@ -1,0 +1,81 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/core-ajax/core-ajax.html">
+<polymer-element name="x-giphy" attributes="key term src gifId translate random">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+    <core-ajax
+      url="{{url}}"
+      params="{{params}}"
+      handleAs="json"
+      response="{{response}}"
+      on-polymer-response="{{handleResponse}}"
+      auto></core-ajax>
+    <img src="{{src}}">
+  </template>
+  <script>
+    (function() {
+      var host = 'http://api.giphy.com/v1/gifs/';
+      // Beta key
+      // https://github.com/giphy/GiphyAPI#access-and-api-keys
+      var key = 'dc6zaTOxFJmzC';
+
+      Polymer('x-giphy', {
+        attached: function() {
+          if (this.term) {
+            this.queryTerm = this.encodeTerm(this.term);
+
+            if (this.hasAttribute('random')) {
+              return this.gifByRandom();
+            }
+
+            if (this.hasAttribute('translate')) {
+              return this.gifByTranslate();
+            }
+
+            return this.gifByTerm();
+          }
+
+          if (this.gifId) {
+            return this.gifById();
+          }
+        },
+        responseChanged: function(oldVal, newVal) {
+          if (newVal) {
+            if (this.hasAttribute('random')) {
+              return this.src = newVal.data.image_original_url;
+            }
+            
+            if (this.hasAttribute('translate') || this.gifId) {
+              return this.src = newVal.data.images.original.url;
+            }
+
+            return this.src = newVal.data[0].images.original.url;
+          }
+        },
+        encodeTerm: function(term) {
+          return term.replace(/ /g, '+');
+        },
+        gifByTerm: function() {
+          this.url = host + 'search';
+          this.params = { q: this.queryTerm, api_key: key };
+        },
+        gifByRandom: function() {
+          this.url = host + 'random';
+          this.params = { tag: this.queryTerm, api_key: key };
+        },
+        gifByTranslate: function() {
+          this.url = host + 'translate';
+          this.params = { s: this.queryTerm, api_key: key };
+        },
+        gifById: function() {
+          this.url = host + this.gifId;
+          this.params = { api_key: key };
+        }
+      });
+    })();
+  </script>
+</polymer-element>
